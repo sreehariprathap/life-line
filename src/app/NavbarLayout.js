@@ -3,9 +3,9 @@ import React from "react";
 
 const NavbarLayout = ({ children }) => {
   return (
-    <div className="text-black pt-[4rem]">
+    <div className="text-black pt-[4rem] bg-slate-50">
       <Navbar />
-      <div>{children}</div>
+      <div className="pt-5">{children}</div>
     </div>
   );
 };
