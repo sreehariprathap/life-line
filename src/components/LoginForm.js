@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
   return (
     <div className="p-4 flex flex-col gap-5 items-center">
       <h2 className="text-2xl font-bold">Welcome Back</h2>
@@ -33,8 +33,8 @@ const LoginForm = () => {
         <input type="password" className="grow" placeholder="Password" />
       </label>
       <button className="btn btn-primary">Sign In</button>
-      <div class="divider text-slate-950">OR</div>
-      <button className="btn bg-slate-50">
+      <div className="divider text-slate-950">OR</div>
+      <button className="btn bg-slate-50" onClick={onLogin}>
         <img src="/google.png" alt="google logo" className="w-5 h-5" />
       </button>
     </div>
