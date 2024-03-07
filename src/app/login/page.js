@@ -4,7 +4,7 @@ import { UserAuth } from "@/contexts/AuthContext";
 import { useState } from "react";
 
 const Page = () => {
-  const { user, googleSignIn, logOut } = UserAuth();
+  const { user, googleSignIn, logOut, loginWithEmailAndPassword } = UserAuth();
   const [loading, setLoading] = useState(true);
 
   const handleSignIn = async () => {
@@ -15,9 +15,17 @@ const Page = () => {
     }
   };
 
+  const handleCredentialSignIn = async (values) => {
+    try {
+      await loginWithEmailAndPassword(values.email,values.password);
+    } catch (error) {
+      console.log('error with login',error);
+    }
+  };
+
   return (
     <div className="flex w-full p-10 bg-[#E8F1F8] justify-between">
-      <LoginForm onLogin={handleSignIn} />
+      <LoginForm onLogin={handleSignIn} onCredentialLogin={handleCredentialSignIn} />
       <div className="flex flex-col gap-2">
         <h2 className="text-5xl text-slate-950">
           Sign In to take <br /> control of your <br /> health

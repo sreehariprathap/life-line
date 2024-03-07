@@ -4,7 +4,7 @@ import { UserAuth } from "@/contexts/AuthContext";
 import { useState } from "react";
 
 const Page = () => {
-  const { user,googleSignIn } = UserAuth();
+  const { user,googleSignIn, RegisterWithEmailAndPassword } = UserAuth();
   const [loading, setLoading] = useState(true);
 
   const handleSignIn = async () => {
@@ -15,9 +15,18 @@ const Page = () => {
     }
   };
 
+  const handleFormRegister = async (values) => {
+    const {email, password} = values;
+    try {
+      await RegisterWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex w-full p-10 bg-[#E8F1F8] justify-around items-start">
-      <RegisterForm onRegister={handleSignIn} />
+      <RegisterForm onRegister={handleSignIn} onFormRegister={handleFormRegister} />
       <div className="flex flex-col gap-2 pt-16">
         <h2 className="text-5xl text-slate-950">
           Sign Up to take <br /> control of your <br /> health
